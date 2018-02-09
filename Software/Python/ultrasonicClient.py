@@ -1,18 +1,10 @@
-import sys
-# By appending the folder of all the GrovePi libraries to the system path here,
-# we are successfully `from grovepi import *`
-sys.path.append('../../Software/Python/')
-
-from grovepi import *
-
-#use UDP
 import socket
 
 def Main():
     # Change the host and port as needed. For ports, use a number in the 9000 
     # range. 
     host = '192.168.1.214'
-    port = 5003
+    port = 5002
 
     server_addr = '192.168.1.244'
 
