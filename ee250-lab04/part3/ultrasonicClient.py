@@ -29,7 +29,7 @@ def Main():
 
         # for UDP, sendto() and recvfrom() are used instead
         s.sendto(message.encode('utf-8'), server) 
-        data, addr = s.recvfrom(8000)
+        data, addr = s.recvfrom(1024)
         data = data.decode('utf-8')
         print("Received from server: " + data)
         dst_port = input("destination port-> ")
