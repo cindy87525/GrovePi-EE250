@@ -17,14 +17,14 @@ def Process1():
 
     print("Process 1 Server Started")
     while True:
-        data, addr = s.recvfrom(1024)
+        data, addr = s.recvfrom(5003)
         data = data.decode('utf-8')
         print("Message From: " + str(addr))
         print("From connected user: " + data)
         data = data.upper()
         print("Sending: " + data)
         s.sendto(data.encode('utf-8'), addr)
-        
+
     c.close()
 
 if __name__ == '__main__':
