@@ -1,4 +1,5 @@
 import sys
+import grovepi
 # By appending the folder of all the GrovePi libraries to the system path here,
 # we are successfully `from grovepi import *`
 sys.path.append('../../Software/Python/')
@@ -18,12 +19,12 @@ def Process1():
     print("Process 1 Server Started")
     while True:
         data, addr = s.recvfrom(1024)
-        data = data.decode('utf-8')
+        #data = data.decode('utf-8')
         print("Message From: " + str(addr))
         print("From connected user: " + data)
-        data = data.upper()
+        #data = data.upper()
         print("Sending: " + data)
-        s.sendto(data.encode('utf-8'), addr)
+        s.sendto(grovepi.ultrasonicRead(ultrasonic_ranger), addr)#s.sendto(data.encode('utf-8'), addr)
 
     c.close()
 
