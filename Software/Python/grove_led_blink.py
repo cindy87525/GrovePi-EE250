@@ -34,7 +34,7 @@ THE SOFTWARE.
 '''
 
 import time
-from grovepi import *
+import grovepi
 
 # Connect the Grove LED to digital port D4
 led = 4

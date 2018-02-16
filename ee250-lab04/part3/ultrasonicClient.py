@@ -15,7 +15,7 @@ def Main():
     host = '192.168.1.211'
     port = 5003
     ultrasonic_ranger = 4
-    server_addr = '192.168.1.246'
+    server_addr = '192.168.1.244'
 
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) 
     s.bind((host,port))
@@ -29,7 +29,7 @@ def Main():
         server = (server_addr, int(dst_port))
 
         # for UDP, sendto() and recvfrom() are used instead
-        s.sendto(str(grovepi.ultrasonicRead(ultrasonic_ranger)).encode('utf-8'), server) #s.sendto(message.encode('utf-8'), server) 
+        s.sendto(grovepi.ultrasonicRead(ultrasonic_ranger).encode('utf-8'), server) #s.sendto(message.encode('utf-8'), server) 
         data, addr = s.recvfrom(1024)
         data = data.decode('utf-8')
         print("Received from server: " + data)#print("Received from server: " + data)

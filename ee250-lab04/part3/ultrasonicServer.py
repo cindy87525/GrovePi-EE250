@@ -16,7 +16,9 @@ def Process1():
 
     print("Process 1 Server Started")
     while True:
+        print("Receiving Data")
         data, addr = s.recvfrom(1024)
+        print("received Data")
         #data = data.decode('utf-8')
         print("Message From: " + str(addr))
         print("From connected user: " + str(data))
