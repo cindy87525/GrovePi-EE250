@@ -20,7 +20,7 @@ def Process1():
         data, addr = s.recvfrom(1024)
         #data = data.decode('utf-8')
         print("Message From: " + str(addr))
-        print("From connected user: " + data)
+        print("From connected user: " + str(data))
         #data = data.upper()
         print("Sending: " + data)
         s.sendto(grovepi.ultrasonicRead(ultrasonic_ranger), addr)#s.sendto(data.encode('utf-8'), addr)
