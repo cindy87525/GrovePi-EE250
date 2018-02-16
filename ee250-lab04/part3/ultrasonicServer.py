@@ -11,7 +11,6 @@ def Process1():
     # range. 
     host = '10.0.2.15'
     port = 9000
-    ultrasonic_ranger = 4
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.bind((host,port))
 
@@ -22,8 +21,6 @@ def Process1():
         print("Message From: " + str(addr))
         print("From connected user: " + str(data))
         #data = data.upper()
-        print("Sending: " + str(data))
-        s.sendto(grovepi.ultrasonicRead(ultrasonic_ranger), addr)#s.sendto(data.encode('utf-8'), addr)
 
     c.close()
 

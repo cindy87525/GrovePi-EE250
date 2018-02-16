@@ -29,9 +29,9 @@ def Main():
         server = (server_addr, int(dst_port))
 
         # for UDP, sendto() and recvfrom() are used instead
-        s.sendto(grovepi.ultrasonicRead(ultrasonic_ranger), server) #s.sendto(message.encode('utf-8'), server) 
+        s.sendto(str(grovepi.ultrasonicRead(ultrasonic_ranger)).encode('utf-8'), server) #s.sendto(message.encode('utf-8'), server) 
         data, addr = s.recvfrom(1024)
-        #data = data.decode('utf-8')
+        data = data.decode('utf-8')
         print("Received from server: " + data)#print("Received from server: " + data)
         dst_port = input("destination port-> ")
         #message = input("message-> ")

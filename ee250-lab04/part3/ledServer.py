@@ -3,6 +3,6 @@ import sys
 # we are successfully `from grovepi import *`
 sys.path.append('../../Software/Python/')
 
-from grovepi import *
+import grovepi
 
 # use TCP
