@@ -3,8 +3,8 @@ import socket
 def Main():
     # Change the host and port as needed. For ports, use a number in the 9000 
     # range. 
-    host = '127.0.0.1'
-    port = 5000
+    host = '10.0.2.15'
+    port = 6003
 
     s = socket.socket()
     s.bind((host,port))
