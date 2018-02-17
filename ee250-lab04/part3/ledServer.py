@@ -11,7 +11,7 @@ def Process1():
 
 
     host = '127.0.0.1'
-    port = 5000
+    port = 6003
 
     s = socket.socket() #by default, the socket constructor creates an TCP/IPv4 socket
     s.connect((host,port))
