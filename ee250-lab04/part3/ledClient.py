@@ -1,3 +1,5 @@
+
+
 import socket
 
 def Main():
@@ -9,8 +11,6 @@ def Main():
     s = socket.socket()
     s.bind((host,port))
 
-
-    print("Process 1 Server Started")
 
     while True:
         #data, addr = s.recvfrom(1024)

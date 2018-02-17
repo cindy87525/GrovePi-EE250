@@ -5,9 +5,6 @@ sys.path.append('../../Software/Python/')
 
 
 
-# use TCP
-import socket
-
 def Process1():
     # Change the host and port as needed. For ports, use a number in the 9000 
     # range. 
