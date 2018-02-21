@@ -12,10 +12,10 @@ import socket
 def Main():
     # Change the host and port as needed. For ports, use a number in the 9000 
     # range. 
-    host = '192.168.1.211'
+    host = '192.168.1.209'
     port = 5003
     ultrasonic_ranger = 4
-    server_addr = '192.168.1.244'
+    server_addr = '192.168.1.245'
 
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) 
     s.bind((host,port))
