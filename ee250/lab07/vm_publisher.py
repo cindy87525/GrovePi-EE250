@@ -4,18 +4,18 @@ Run vm_publisher.py in a separate terminal on your VM."""
 
 import paho.mqtt.client as mqtt
 import time
-from pynput import keyboard
 
 def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
 
     #subscribe to topics of interest here
-
+    client.subscribe("anrg-pi14/ultrasonicRanger")
 #Default message callback. Please use custom callbacks.
 def on_message(client, userdata, msg):
     print("on_message: " + msg.topic + " " + str(msg.payload))
+    print("on_message: msg.payload is of type " + str(type(msg.payload)))
 
-def on_press(key):
+# def on_press(key):
     try: 
         k = key.char # single-char keys
     except: 
@@ -27,7 +27,7 @@ def on_press(key):
     elif k == 'a':
         print("a")
         # send "a" character to rpi
-        #send "LED_ON"
+        client.publish("anrg-pi14/led", "LED_ON") #send "LED_ON"
     elif k == 's':
         print("s")
         # send "s" character to rpi
