@@ -20,13 +20,13 @@ def led_callback(client, userdata, message):
 
     data = str(message.payload, "utf-8")
 
-    if data == "LED ON!"
+    if data == "LED_ON!"
         grovepi.digitalWrite(led,1)     # Send HIGH to switch on LED
-        print ("LED ON!")
+        print ("LED_ON!")
         time.sleep(1)
-    if data == "LED OFF!"
+    if data == "LED_OFF!"
         grovepi.digitalWrite(led,0)     # Send LOW to switch off LED
-        print ("LED OFF!")
+        print ("LED_OFF!")
         time.sleep(1)
 
 def on_connect(client, userdata, flags, rc):
