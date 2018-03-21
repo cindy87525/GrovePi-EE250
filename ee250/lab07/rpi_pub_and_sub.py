@@ -1,10 +1,17 @@
 """EE 250L Lab 07 Skeleton Code
 
 Run rpi_pub_and_sub.py on your Raspberry Pi."""
-
+import sys
+sys.path.append('../../Software/Python/')
 import paho.mqtt.client as mqtt
 import time
+import grovepi
 from pynput import keyboard
+
+
+led = 3
+grovepi.pinMode(led,"OUTPUT")
+
 
 def led_callback(client, userdata, message):
     print("custom_callback: " + message.topic + " " + str(message.payload, "utf-8"))
