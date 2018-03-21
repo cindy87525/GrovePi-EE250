@@ -6,7 +6,7 @@ sys.path.append('../../Software/Python/')
 import paho.mqtt.client as mqtt
 import time
 import grovepi
-from pynput import keyboard
+
 
 
 led = 3
