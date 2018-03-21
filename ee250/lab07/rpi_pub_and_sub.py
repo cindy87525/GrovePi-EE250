@@ -40,7 +40,6 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     print("on_message: " + msg.topic + " " + str(msg.payload))
 
-def on_press(key):
 if __name__ == '__main__':
     #this section is covered in publisher_and_subscriber_example.py
     client = mqtt.Client()
