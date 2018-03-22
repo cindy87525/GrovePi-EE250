@@ -57,8 +57,7 @@ if __name__ == '__main__':
     client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
     client.loop_start()
 
-    while True:
-        print("delete this line")
-        time.sleep(1)
+
+
             
 
