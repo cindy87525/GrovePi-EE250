@@ -4,7 +4,7 @@ Run vm_publisher.py in a separate terminal on your VM."""
 
 import paho.mqtt.client as mqtt
 import time
-import keyboard
+from pynput import keyboard
 
 def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
@@ -22,7 +22,7 @@ def led_callback(client, userdata, message):
     print("custom_callback: message.payload is of type " + 
           str(type(message.payload, "utf-8")))
 
-# def on_press(key):
+def on_press(key):
     try: 
         k = key.char # single-char keys
     except: 
