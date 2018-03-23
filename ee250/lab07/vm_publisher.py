@@ -11,6 +11,7 @@ def on_connect(client, userdata, flags, rc):
 
     #subscribe to topics of interest here
     client.subscribe("anrg-pi14/led")
+    client.subscribe("anrg-pi14/lcd")
 #Default message callback. Please use custom callbacks.
 def on_message(client, userdata, msg):
     print("on_message: " + msg.topic + " " + str(msg.payload))

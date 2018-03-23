@@ -38,24 +38,19 @@ def lcd_callback(client, userdata, message):
           str(type(message.payload)))
 
     data = str(message.payload, "utf-8")
-
     if data == "w":
-        setRGB(0,255,0)
         setText("w")
         print ("w")
         time.sleep(1)
     if data == "a":
-        setRGB(0,255,0)
         setText("a")
         print ("a")
         time.sleep(1)
     if data == "s":
-        setRGB(0,255,0)
         setText("s")
         print ("s")
         time.sleep(1)
     if data == "d":
-        setRGB(0,255,0)
         setText("d")
         print ("d")
         time.sleep(1)
@@ -70,7 +65,7 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe("anrg-pi14/ultrasonicRanger")
     client.subscribe("anrg-pi14/button")
     client.subscribe("anrg-pi14/lcd")
-    client.message_callback_add("anrg-pi14/led", lcd_callback)
+    client.message_callback_add("anrg-pi14/lcd", lcd_callback)
     client.message_callback_add("anrg-pi14/led", led_callback)
 
 
