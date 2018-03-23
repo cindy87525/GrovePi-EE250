@@ -6,7 +6,7 @@ sys.path.append('../../Software/Python/')
 import paho.mqtt.client as mqtt
 import time
 import grovepi
-
+from grove_rgb_lcd import *
 
 button = 2
 led = 3
@@ -39,13 +39,25 @@ def lcd_callback(client, userdata, message):
 
     data = str(message.payload, "utf-8")
 
-    if data == "LED_ON!":
-        grovepi.digitalWrite(led,1)     # Send HIGH to switch on LED
-        print ("LED_ON!")
+    if data == "w":
+        setRGB(0,255,0)
+        setText("w")
+        print ("w")
         time.sleep(1)
-    if data == "LED_OFF!":
-        grovepi.digitalWrite(led,0)     # Send LOW to switch off LED
-        print ("LED_OFF!")
+    if data == "a":
+        setRGB(0,255,0)
+        setText("a")
+        print ("a")
+        time.sleep(1)
+    if data == "s":
+        setRGB(0,255,0)
+        setText("s")
+        print ("s")
+        time.sleep(1)
+    if data == "d":
+        setRGB(0,255,0)
+        setText("d")
+        print ("d")
         time.sleep(1)
 
 
@@ -73,6 +85,7 @@ if __name__ == '__main__':
     client.on_connect = on_connect
     client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
     client.loop_start()
+    setRGB(0,255,0)
 
 
             
