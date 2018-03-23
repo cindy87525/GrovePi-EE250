@@ -9,6 +9,7 @@ import grovepi
 
 
 
+global led
 led = 3
 grovepi.pinMode(led,"OUTPUT")
 
