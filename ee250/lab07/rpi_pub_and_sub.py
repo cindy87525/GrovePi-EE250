@@ -32,6 +32,22 @@ def led_callback(client, userdata, message):
         time.sleep(1)
 
 
+def lcd_callback(client, userdata, message):
+    print("custom_callback: " + message.topic + " " + str(message.payload, "utf-8"))
+    print("custom_callback: message.payload is of type " + 
+          str(type(message.payload)))
+
+    data = str(message.payload, "utf-8")
+
+    if data == "LED_ON!":
+        grovepi.digitalWrite(led,1)     # Send HIGH to switch on LED
+        print ("LED_ON!")
+        time.sleep(1)
+    if data == "LED_OFF!":
+        grovepi.digitalWrite(led,0)     # Send LOW to switch off LED
+        print ("LED_OFF!")
+        time.sleep(1)
+
 
 
 def on_connect(client, userdata, flags, rc):
@@ -41,6 +57,8 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe("anrg-pi14/led")
     client.subscribe("anrg-pi14/ultrasonicRanger")
     client.subscribe("anrg-pi14/button")
+    client.subscribe("anrg-pi14/lcd")
+    client.message_callback_add("anrg-pi14/led", lcd_callback)
     client.message_callback_add("anrg-pi14/led", led_callback)
 
 

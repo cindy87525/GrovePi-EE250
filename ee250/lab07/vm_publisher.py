@@ -31,19 +31,23 @@ def on_press(key):
     if k == 'w':
         print("w")
         #send "w" character to rpi
+        client.publish("anrg-pi14/lcd", "w")
     elif k == 'a':
         print("a")
         # send "a" character to rpi
          #send "LED_ON"
         client.publish("anrg-pi14/led", "LED_ON!")
+        client.publish("anrg-pi14/lcd", "a")
     elif k == 's':
         print("s")
         # send "s" character to rpi
+        client.publish("anrg-pi14/lcd", "s")
     elif k == 'd':
         print("d")
         # send "d" character to rpi
         # send "LED_OFF"
         client.publish("anrg-pi14/led", "LED_OFF!")
+        client.publish("anrg-pi14/lcd", "d")
 
 if __name__ == '__main__':
     #setup the keyboard event listener
