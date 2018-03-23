@@ -9,12 +9,13 @@ import grovepi
 
 
 
-global led
+led = 3
 
 grovepi.pinMode(led,"OUTPUT")
 
 
 def led_callback(client, userdata, message):
+    global led
     print("custom_callback: " + message.topic + " " + str(message.payload, "utf-8"))
     print("custom_callback: message.payload is of type " + 
           str(type(message.payload)))
@@ -22,11 +23,11 @@ def led_callback(client, userdata, message):
     data = str(message.payload, "utf-8")
 
     if data == "LED_ON!"
-        grovepi.digitalWrite(3,1)     # Send HIGH to switch on LED
+        grovepi.digitalWrite(led,1)     # Send HIGH to switch on LED
         print ("LED_ON!")
         time.sleep(1)
     if data == "LED_OFF!"
-        grovepi.digitalWrite(3,0)     # Send LOW to switch off LED
+        grovepi.digitalWrite(led,0)     # Send LOW to switch off LED
         print ("LED_OFF!")
         time.sleep(1)
 
