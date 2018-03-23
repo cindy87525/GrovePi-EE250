@@ -11,7 +11,8 @@ def on_connect(client, userdata, flags, rc):
 
     #subscribe to the ultrasonic ranger topic here
     client.subscribe("anrg-pi14/ultrasonicRanger")
-    client.message_callback_add("anrg-pi14/ultrasonicRanger", led_callback)
+    client.subscribe("anrg-pi14/button")
+    client.message_callback_add("anrg-pi14/button", button_callback)
 
 
 #Default message callback. Please use custom callbacks.
@@ -20,6 +21,12 @@ def on_message(client, userdata, msg):
     print("on_message: " + msg.topic + " " + str(msg.payload))
 
 def ultrasonicRanger_callback(client, userdata, message):
+    #the third argument is 'message' here unlike 'msg' in on_message 
+    print("custom_callback: " + message.topic + " " + str(message.payload, "utf-8"))
+    print("custom_callback: message.payload is of type " + 
+          str(type(message.payload, "utf-8")))
+
+def button_callback(client, userdata, message):
     #the third argument is 'message' here unlike 'msg' in on_message 
     print("custom_callback: " + message.topic + " " + str(message.payload, "utf-8"))
     print("custom_callback: message.payload is of type " + 

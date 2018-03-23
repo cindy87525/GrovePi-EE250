@@ -10,8 +10,10 @@ import grovepi
 
 
 led = 3
-
+ultrasonic_ranger = 4
 grovepi.pinMode(led,"OUTPUT")
+
+
 
 
 def led_callback(client, userdata, message):
@@ -37,6 +39,7 @@ def on_connect(client, userdata, flags, rc):
     #subscribe to topics of interest here
     client.subscribe("anrg-pi14/led")
     client.subscribe("anrg-pi14/ultrasonicRanger")
+    client.subscribe("anrg-pi14/button")
     client.message_callback_add("anrg-pi14/led", led_callback)
 
 #Default message callback. Please use custom callbacks.
@@ -57,7 +60,7 @@ if __name__ == '__main__':
 
 
     while True:
-        print("delete this line")
+        print(grovepi.ultrasonicRead(ultrasonic_ranger))
         time.sleep(1)
             
 
