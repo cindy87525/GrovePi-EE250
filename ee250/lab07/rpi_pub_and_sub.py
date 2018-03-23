@@ -41,19 +41,15 @@ def lcd_callback(client, userdata, message):
     if data == "w":
         setText("w")
         print ("w")
-        time.sleep(1)
     if data == "a":
         setText("a")
         print ("a")
-        time.sleep(1)
     if data == "s":
         setText("s")
         print ("s")
-        time.sleep(1)
     if data == "d":
         setText("d")
         print ("d")
-        time.sleep(1)
 
 
 
