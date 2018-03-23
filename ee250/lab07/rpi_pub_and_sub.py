@@ -42,10 +42,10 @@ def button_callback(client, userdata, message):
 
     data = str(message.payload, "utf-8")
 
-    if grovepi.digitalRead(button) == 1:     # Send HIGH to switch on LED
-        print ("Button_pressed!")
-        client.publish("anrg-pi14/button", "Button_pressed!")
-        time.sleep(1)
+
+    print ("Button_pressed!")
+    client.publish("anrg-pi14/button", "Button_pressed!")
+    time.sleep(1)
 
 
 

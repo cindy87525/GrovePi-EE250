@@ -42,7 +42,10 @@ if __name__ == '__main__':
     client.loop_start()
 
     while True:
-        print("delete this line")
-        time.sleep(1)
+        if grovepi.digitalRead(button) == 1:     # Send HIGH to switch on LED
+            print ("Button_pressed!")
+            client.publish("anrg-pi14/button", "Button_pressed!")
+            time.sleep(1)
+        
             
 
