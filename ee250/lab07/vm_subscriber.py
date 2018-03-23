@@ -26,13 +26,13 @@ def ultrasonicRanger_callback(client, userdata, message):
           str(type(message.payload, "utf-8")))
 
 
-    if __name__ == '__main__':
-    #this section is covered in publisher_and_subscriber_example.py
-        client = mqtt.Client()
-        client.on_message = on_message
-        client.on_connect = on_connect
-        client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
-        client.loop_start()
+if __name__ == '__main__':
+#this section is covered in publisher_and_subscriber_example.py
+    client = mqtt.Client()
+    client.on_message = on_message
+    client.on_connect = on_connect
+    client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
+    client.loop_start()
 
     while True:
         print("delete this line")

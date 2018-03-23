@@ -34,6 +34,7 @@ def on_connect(client, userdata, flags, rc):
 
     #subscribe to topics of interest here
     client.subscribe("anrg-pi14/led")
+    client.subscribe("anrg-pi14/ultrasonicRanger")
     client.message_callback_add("anrg-pi14/led", led_callback)
 
 #Default message callback. Please use custom callbacks.
