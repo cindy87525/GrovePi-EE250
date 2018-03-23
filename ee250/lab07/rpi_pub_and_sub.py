@@ -14,9 +14,6 @@ ultrasonic_ranger = 4
 grovepi.pinMode(led,"OUTPUT")
 grovepi.pinMode(button,"INPUT")
 
-
-
-
 def led_callback(client, userdata, message):
     global led
     print("custom_callback: " + message.topic + " " + str(message.payload, "utf-8"))
@@ -45,7 +42,7 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe("anrg-pi14/ultrasonicRanger")
     client.subscribe("anrg-pi14/button")
     client.message_callback_add("anrg-pi14/led", led_callback)
-    client.message_callback_add("anrg-pi14/button", button_callback)
+
 
 #Default message callback. Please use custom callbacks.
 def on_message(client, userdata, msg):
