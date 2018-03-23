@@ -34,18 +34,6 @@ def led_callback(client, userdata, message):
         print ("LED_OFF!")
         time.sleep(1)
 
-def button_callback(client, userdata, message):
-    global button
-    print("custom_callback: " + message.topic + " " + str(message.payload, "utf-8"))
-    print("custom_callback: message.payload is of type " + 
-          str(type(message.payload)))
-
-    data = str(message.payload, "utf-8")
-
-
-    print ("Button_pressed!")
-    client.publish("anrg-pi14/button", "Button_pressed!")
-    time.sleep(1)
 
 
 
@@ -78,6 +66,9 @@ if __name__ == '__main__':
 
     while True:
         print(grovepi.ultrasonicRead(ultrasonic_ranger))
+        if grovepi.digitalRead(button) == 1:     # Send HIGH to switch on LED
+            print ("Button_pressed!")
+            client.publish("anrg-pi14/button", "Button_pressed!")
         time.sleep(1)
             
 

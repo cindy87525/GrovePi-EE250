@@ -4,7 +4,6 @@ Run vm_subscriber.py in a separate terminal on your VM."""
 
 import paho.mqtt.client as mqtt
 import time
-import grovepi
 def on_connect(client, userdata, flags, rc):
 
     print("Connected to server (i.e., broker) with result code "+str(rc))
@@ -42,10 +41,8 @@ if __name__ == '__main__':
     client.loop_start()
 
     while True:
-        if grovepi.digitalRead(button) == 1:     # Send HIGH to switch on LED
-            print ("Button_pressed!")
-            client.publish("anrg-pi14/button", "Button_pressed!")
-            time.sleep(1)
+
+        time.sleep(1)
         
             
 
