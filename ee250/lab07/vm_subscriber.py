@@ -1,9 +1,9 @@
 """EE 250L Lab 07 Skeleton Code
 
 Run vm_subscriber.py in a separate terminal on your VM."""
-
+import sys
 import paho.mqtt.client as mqtt
-import time
+sys.path.append('../../Software/Python/')
 import time
 import grovepi
 def on_connect(client, userdata, flags, rc):
