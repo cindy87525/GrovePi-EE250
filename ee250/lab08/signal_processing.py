@@ -1,5 +1,8 @@
 import paho.mqtt.client as mqtt
 import time
+import requests
+import json
+from datetime import datetime
 
 # MQTT variables
 broker_hostname = "eclipse.usc.edu"
@@ -54,16 +57,6 @@ if __name__ == '__main__':
     avg2_i = 185
 
     while True:
-        """ You have two lists, ranger1_dist and ranger2_dist, which hold a window
-        of the past MAX_LIST_LENGTH samples published by ultrasonic ranger 1
-        and 2, respectively. The signals are published roughly at intervals of
-        200ms, or 5 samples/second (5 Hz). The values published are the 
-        distances in centimeters to the closest object. Expect values between 
-        0 and 512. However, these rangers do not detect people well beyond 
-        ~125cm. """
-        
-        # TODO: detect movement and/or position
-        
 
         #initialize buffers
         sam_buf1 = [0,0,0,0,0,0,0,0,0,0]
@@ -100,28 +93,28 @@ if __name__ == '__main__':
         sum1 = 0
         sum2 = 0
 
-        for q in range(0, MAX_LIST_LENGTH):
+        for q in range(0, MAX_LIST_LENGTH): #add up the values in the average diestance array
             sum1 = sum1 + avg_dist1[q]
             sum2 = sum2 + avg_dist2[q]
 
 
 
 
-        avg1 = sum1 / ((MAX_LIST_LENGTH + 1)/2)
-        avg2 = sum2 / ((MAX_LIST_LENGTH + 1)/2)
+        avg1 = sum1 / ((MAX_LIST_LENGTH + 1)/2) #compute the actual average values that help classify the movements and positions
+        avg2 = sum2 / ((MAX_LIST_LENGTH + 1)/2) #compute the actual average values that help classify the movements and positions
 
 
 
 
-        slope1 = (avg1 - avg1_i) / 2
-        slope2 = (avg2 - avg2_i) / 2
+        slope1 = (avg1 - avg1_i) / 2 #compute the slope for ultrasonic ranger 1
+        slope2 = (avg2 - avg2_i) / 2 #compute the slope for ultrasonic ranger 2
 
 
-        avg1_i = avg1
-        avg2_i = avg2
+        avg1_i = avg1 #assign the new average value to a buffer so we can calculate new slope when the next loop starts
+        avg2_i = avg2 #assign the new average value to a buffer so we can calculate new slope when the next loop starts
 
 
-        s = ""
+        s = "" #default string
         #determine present or not
         if avg1 > 350 and avg2 > 120:
             s = "out of range :^( "
@@ -156,14 +149,29 @@ if __name__ == '__main__':
                 if avg1 < 50 and (-1 < slope1 < 1):
                     #right
                     s = "still: right"
-                #if 69 < avg1 < 72:
-                    #s = "still: middle"
+                if 69 < avg1 < 72:
+                    s = "still: middle"
 
 
+        # This header sets the HTTP request's mimetype to `application/json`. This
+        # means the payload of the HTTP message will be formatted as a json ojbect
+        hdr = {
+            'Content-Type': 'application/json',
+            'Authorization': None #not using HTTP secure
+        }
 
+        # The payload of our message starts as a simple dictionary. Before sending
+        # the HTTP message, we will format this into a json object
+        payload = {
+            'time': str(datetime.now()),
+            'event': s
+        }
 
-
-
+        # Send an HTTP POST message and block until a response is given.
+        # Note: requests() is NOT the same thing as request() under the flask 
+        # library.
+        response = requests.post("http://0.0.0.0:5000/post-event", headers = hdr,
+                                 data = json.dumps(payload))
 
         print(s)
         
