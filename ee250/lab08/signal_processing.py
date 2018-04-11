@@ -50,8 +50,8 @@ if __name__ == '__main__':
     client.loop_start()
 
 
-    avg1_i = 185
-    avg2_i = 515
+    avg1_i = 515
+    avg2_i = 185
 
     while True:
         """ You have two lists, ranger1_dist and ranger2_dist, which hold a window
@@ -107,8 +107,8 @@ if __name__ == '__main__':
 
 
 
-        avg1 = sum1 / (MAX_LIST_LENGTH + 1)
-        avg2 = sum2 / (MAX_LIST_LENGTH + 1)
+        avg1 = sum1 / ((MAX_LIST_LENGTH + 1)/2)
+        avg2 = sum2 / ((MAX_LIST_LENGTH + 1)/2)
 
 
 
@@ -123,11 +123,11 @@ if __name__ == '__main__':
 
         s = ""
         #determine present or not
-        if avg1 > 120 and avg2 > 400:
+        if avg1 > 350 and avg2 > 120:
             s = "out of range :^( "
 
         #present: at the left -> in the range of sensor2
-        elif avg2 < 400:
+        elif avg2 < 120:
             #if it's moving left
             if slope2 < -3:
                 s = "moving left"
@@ -136,15 +136,15 @@ if __name__ == '__main__':
                 s = "moving right"
             else:
                 #still
-                if avg2 < 52:
+                if avg2 < 52 and (-1 < slope2 < 1):
                     #left
                     s = "still: left"
-                if 69 < avg2 < 72:
+                if 54 < avg2 < 78:
                     s = "still: middle"
 
 
         #present: at the right -> in the range of sensor1
-        elif avg1 < 120:
+        elif avg1 < 350:
             #if it's moving left
             if slope1 < 0:
                 s = "moving right"
@@ -153,11 +153,11 @@ if __name__ == '__main__':
                 s = "moving left"
             else:
                 #still
-                if avg1 < 50:
+                if avg1 < 50 and (-1 < slope1 < 1):
                     #right
                     s = "still: right"
-                if 69 < avg1 < 72:
-                    s = "still: middle"
+                #if 69 < avg1 < 72:
+                    #s = "still: middle"
 
 
 
@@ -165,7 +165,7 @@ if __name__ == '__main__':
 
 
 
-        print("ranger1: " + "{0:.2f}".format(avg1) + ", ranger2: " + "{0:.2f}".format(avg2) + s + "    slope1 = " + "{0:.2f}".format(slope1) + "    slope2 = " + "{0:.2f}".format(slope2))
+        print(s)
         
 
         
