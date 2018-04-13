@@ -16,21 +16,12 @@ time.sleep(1)
 i = 0
 
 while True:
-    try:
-        # Reset
-        if i > 255:
-            i = 0
 
-        # Current brightness
-        print (i)
 
-        # Give PWM output to LED
-        grovepi.analogWrite(led,i)
-
-        # Increment brightness for next iteration
-        i = i + 20
-        time.sleep(.5)
-
+    grovepi.digitalWrite(led,1)
+    time.sleep(.5)
+    grovepi.digitalWrite(led,0)
+    time.sleep(.5)
     except KeyboardInterrupt:
         grovepi.analogWrite(led,0)
         break
