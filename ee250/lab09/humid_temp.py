@@ -70,4 +70,4 @@ if __name__ == "__main__":
 	t= th02()
 	while True:
 		print(t.getTemperature(),t.getHumidity())
-		time.sleep(.5)
+		time.sleep(1)
