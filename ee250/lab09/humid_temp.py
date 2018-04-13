@@ -1,4 +1,5 @@
 import time,sys
+sys.path.append('../../../Software/Python/')
 import RPi.GPIO as GPIO
 import smbus
 import grovepi
