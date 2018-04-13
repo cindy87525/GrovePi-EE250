@@ -2,6 +2,7 @@ import time,sys
 import RPi.GPIO as GPIO
 import smbus
 import grovepi
+
 debug = 0
 # use the bus that matches your raspi version
 rev = GPIO.RPI_REVISION
