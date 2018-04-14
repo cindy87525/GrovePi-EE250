@@ -18,7 +18,7 @@ def led_callback(client, userdata, message):
           str(type(message.payload)))
 
     data = str(message.payload, "utf-8")
-
+    print("LED callback")
     if data == "LED_ON!":
         grovepi.digitalWrite(led,1)     # Send HIGH to switch on LED
         print("LED_ON!")
