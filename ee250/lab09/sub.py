@@ -87,10 +87,10 @@ if __name__ == '__main__':
     while True:
 
         #flag = flag + 1
-        #print(grovepi.ultrasonicRead(ultrasonic_ranger))
-        #if grovepi.digitalRead(button) == 1:     # Send HIGH to switch on LED
-        #    print ("Button_pressed!")
-        #    client.publish("anrg-pi14/button", "Button_pressed!")
-        #time.sleep(1)
+        print(grovepi.ultrasonicRead(ultrasonic_ranger))
+        if grovepi.digitalRead(button) == 1:     # Send HIGH to switch on LED
+            print ("Button_pressed!")
+            client.publish("anrg-pi14/button", "Button_pressed!")
+        time.sleep(1)
             
 
