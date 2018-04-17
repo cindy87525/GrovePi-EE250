@@ -23,7 +23,7 @@ def led_callback(client, userdata, message):
 
     
 
-    if flag1 % 2 == 0:
+    if flag % 2 == 0:
         grovepi.digitalWrite(led,1)
         print ("LED_ON!")
         flag = flag + 1
@@ -32,6 +32,7 @@ def led_callback(client, userdata, message):
     else:
         grovepi.digitalWrite(led,0)     # Send LOW to switch off LED
         print ("LED_OFF!")
+        flag = flag + 1
         time.sleep(1)
 
 
