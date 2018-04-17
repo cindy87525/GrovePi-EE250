@@ -8,26 +8,31 @@ from grove_rgb_lcd import *
 button = 2
 led = 3
 ultrasonic_ranger = 4
+flag = 0
 grovepi.pinMode(led,"OUTPUT")
 grovepi.pinMode(button,"INPUT")
 
 def led_callback(client, userdata, message):
     global led
+    global flag
     print("custom_callback: " + message.topic + " " + str(message.payload, "utf-8"))
     print("custom_callback: message.payload is of type " + 
           str(type(message.payload)))
 
     data = str(message.payload, "utf-8")
-    print("LED callback")
-    if data == "LED_ON!":
-        grovepi.digitalWrite(led,1)     # Send HIGH to switch on LED
-        print("LED_ON!")
-     #   print ("LED_ON!")
-      #  time.sleep(1)
-    #if data == "LED_OFF!":
-     #   grovepi.digitalWrite(led,0)     # Send LOW to switch off LED
-      #  print ("LED_OFF!")
-       # time.sleep(1)
+
+    
+
+    if flag1 % 2 == 0:
+        grovepi.digitalWrite(led,1)
+        print ("LED_ON!")
+        flag = flag + 1
+        time.sleep(1)
+
+    else:
+        grovepi.digitalWrite(led,0)     # Send LOW to switch off LED
+        print ("LED_OFF!")
+        time.sleep(1)
 
 
 def lcd_callback(client, userdata, message):
@@ -80,10 +85,12 @@ if __name__ == '__main__':
 
 
     while True:
-        print(grovepi.ultrasonicRead(ultrasonic_ranger))
-        if grovepi.digitalRead(button) == 1:     # Send HIGH to switch on LED
-            print ("Button_pressed!")
-            client.publish("anrg-pi14/button", "Button_pressed!")
-        time.sleep(1)
+
+        #flag = flag + 1
+        #print(grovepi.ultrasonicRead(ultrasonic_ranger))
+        #if grovepi.digitalRead(button) == 1:     # Send HIGH to switch on LED
+        #    print ("Button_pressed!")
+        #    client.publish("anrg-pi14/button", "Button_pressed!")
+        #time.sleep(1)
             
 
