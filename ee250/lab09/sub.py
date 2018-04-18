@@ -105,6 +105,8 @@ if __name__ == '__main__':
             [temp,humidity] = grovepi.dht(sensor,blue)  
             if math.isnan(temp) == False and math.isnan(humidity) == False:
                 print("temp = %.02f C humidity =%.02f%%"%(temp, humidity))
+                client.publish("anrg-pi14/temperature", round(temp, 2) + " C")
+                client.publish("anrg-pi14/humidity", round(humidity, 2) + "%")
                 time.sleep(0.5)
 
         except IOError:
