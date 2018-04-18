@@ -30,13 +30,13 @@ def led_callback(client, userdata, message):
         grovepi.digitalWrite(led,1)
         print ("LED_ON!")
         flag = flag + 1 #flag ++ to make flag != 0
-        time.sleep(1)
+        time.sleep(0.1)
 
     else:
         grovepi.digitalWrite(led,0)     #if flag is an odd number, turn LED off
         print ("LED_OFF!")
         flag = flag - 1 #flag -- to make flag = 0
-        time.sleep(1)
+        time.sleep(0.1)
 
 
 def lcd_callback(client, userdata, message):
