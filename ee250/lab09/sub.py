@@ -23,16 +23,16 @@ def led_callback(client, userdata, message):
 
     
 
-    if flag % 2 == 0:
+    if flag % 2 == 0: #if flag is an even number, turn LED on
         grovepi.digitalWrite(led,1)
         print ("LED_ON!")
-        flag = flag + 1
+        flag = flag + 1 #flag ++ to make flag an odd number
         time.sleep(1)
 
     else:
-        grovepi.digitalWrite(led,0)     # Send LOW to switch off LED
+        grovepi.digitalWrite(led,0)     #if flag is an odd number, turn LED off
         print ("LED_OFF!")
-        flag = flag + 1
+        flag = flag + 1 #flag ++ to make flag an even number
         time.sleep(1)
 
 
@@ -42,18 +42,18 @@ def lcd_callback(client, userdata, message):
           str(type(message.payload)))
 
     data = str(message.payload, "utf-8")
-    if data == "w":
-        setText("w")
-        print ("w")
-    if data == "a":
-        setText("a")
-        print ("a")
-    if data == "s":
-        setText("s")
-        print ("s")
-    if data == "d":
-        setText("d")
-        print ("d")
+    #if data == "w":
+        setText(data)
+        print (data)
+    #if data == "a":
+    #    setText("a")
+    #    print ("a")
+    #if data == "s":
+    #    setText("s")
+    #    print ("s")
+    #if data == "d":
+    #    setText("d")
+    #    print ("d")
 
 
 
