@@ -83,10 +83,10 @@ if __name__ == '__main__':
             # The first parameter is the port, the second parameter is the type of sensor.
             [temp,humidity] = grovepi.dht(sensor,blue)  
             if math.isnan(temp) == False and math.isnan(humidity) == False:
-                T = str(round(temp, 2), 'utf-8') + " C"
-                H = str(round(humidity, 2), 'utf-8') + "%"
-                client.publish("anrg-pi14/temperature", T )
-                client.publish("anrg-pi14/humidity", H )
+                T = str(round(temp, 2))
+                H = str(round(humidity, 2))
+                client.publish("anrg-pi14/temperature", T + " C")
+                client.publish("anrg-pi14/humidity", H + "%")
                 time.sleep(0.1)
 
         except IOError:
