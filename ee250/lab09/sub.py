@@ -43,8 +43,8 @@ def lcd_callback(client, userdata, message):
 
     data = str(message.payload, "utf-8")
     #if data == "w":
-        setText(data)
-        print (data)
+    setText(data)
+    print (data)
     #if data == "a":
     #    setText("a")
     #    print ("a")
