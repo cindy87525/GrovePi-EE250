@@ -85,8 +85,8 @@ if __name__ == '__main__':
             if math.isnan(temp) == False and math.isnan(humidity) == False:
                 T = str(round(temp, 2))
                 H = str(round(humidity, 2))
-                client.publish("anrg-pi14/temperature", T)
-                client.publish("anrg-pi14/humidity", H)
+                client.publish("anrg-pi14/temperature", T + " C")
+                client.publish("anrg-pi14/humidity", H + "%")
                 time.sleep(0.1)
 
         except IOError:
