@@ -3,10 +3,13 @@ sys.path.append('../../Software/Python/')
 import paho.mqtt.client as mqtt
 import time
 import grovepi
+import math
 from grove_rgb_lcd import *
 
 button = 2
 led = 3
+sensor = 4
+blue = 0
 ultrasonic_ranger = 4
 flag = 1
 grovepi.pinMode(led,"OUTPUT")
@@ -88,10 +91,19 @@ if __name__ == '__main__':
     while True:
 
         #flag = flag + 1
-        print(grovepi.ultrasonicRead(ultrasonic_ranger))
-        if grovepi.digitalRead(button) == 1:     # Send HIGH to switch on LED
-            print ("Button_pressed!")
-            client.publish("anrg-pi14/button", "Button_pressed!")
-        time.sleep(1)
+        #print(grovepi.ultrasonicRead(ultrasonic_ranger))
+        #if grovepi.digitalRead(button) == 1:     # Send HIGH to switch on LED
+        #    print ("Button_pressed!")
+        #    client.publish("anrg-pi14/button", "Button_pressed!")
+        #time.sleep(1)
+        try:
+            # This example uses the blue colored sensor. 
+            # The first parameter is the port, the second parameter is the type of sensor.
+            [temp,humidity] = grovepi.dht(sensor,blue)  
+            if math.isnan(temp) == False and math.isnan(humidity) == False:
+                print("temp = %.02f C humidity =%.02f%%"%(temp, humidity))
+
+        except IOError:
+            print ("Error")
             
 
