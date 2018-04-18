@@ -107,7 +107,7 @@ if __name__ == '__main__':
                 print("temp = %.02f C humidity =%.02f%%"%(temp, humidity))
                 client.publish("anrg-pi14/temperature", str(round(temp, 2)))
                 client.publish("anrg-pi14/humidity", str(round(humidity, 2)))
-                time.sleep(0.5)
+                time.sleep(0.1)
 
         except IOError:
             print ("Error")
