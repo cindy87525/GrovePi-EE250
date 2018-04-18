@@ -8,7 +8,7 @@ from grove_rgb_lcd import *
 button = 2
 led = 3
 ultrasonic_ranger = 4
-flag = 0
+flag = 1
 grovepi.pinMode(led,"OUTPUT")
 grovepi.pinMode(button,"INPUT")
 
@@ -26,13 +26,13 @@ def led_callback(client, userdata, message):
     if flag % 2 == 0: #if flag is an even number, turn LED on
         grovepi.digitalWrite(led,1)
         print ("LED_ON!")
-        flag = flag + 1 #flag ++ to make flag an odd number
+        flag = flag + 1 #flag ++ to make flag != 0
         time.sleep(1)
 
     else:
         grovepi.digitalWrite(led,0)     #if flag is an odd number, turn LED off
         print ("LED_OFF!")
-        flag = flag + 1 #flag ++ to make flag an even number
+        flag = flag - 1 #flag -- to make flag = 0
         time.sleep(1)
 
 
