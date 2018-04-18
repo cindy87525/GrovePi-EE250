@@ -45,18 +45,8 @@ def lcd_callback(client, userdata, message):
           str(type(message.payload)))
 
     data = str(message.payload, "utf-8")
-    #if data == "w":
     setText(data)
     print (data)
-    #if data == "a":
-    #    setText("a")
-    #    print ("a")
-    #if data == "s":
-    #    setText("s")
-    #    print ("s")
-    #if data == "d":
-    #    setText("d")
-    #    print ("d")
 
 
 
@@ -73,15 +63,10 @@ def on_connect(client, userdata, flags, rc):
 
 
 
-#Default message callback. Please use custom callbacks.
-#def on_message(client, userdata, msg):
-    #sssssssssprint("on_message: " + msg.topic + " " + str(msg.payload))
-
 if __name__ == '__main__':
-    #this section is covered in publisher_and_subscriber_example.py
     client = mqtt.Client()
-    #client.on_message = on_message
     client.on_connect = on_connect
+    #use the port address for usc eclipse
     client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
     client.loop_start()
     setRGB(0,255,0)
@@ -93,20 +78,15 @@ if __name__ == '__main__':
 
     while True:
 
-        #flag = flag + 1
-        #print(grovepi.ultrasonicRead(ultrasonic_ranger))
-        #if grovepi.digitalRead(button) == 1:     # Send HIGH to switch on LED
-        #    print ("Button_pressed!")
-        #    client.publish("anrg-pi14/button", "Button_pressed!")
-        #time.sleep(1)
         try:
             # This example uses the blue colored sensor. 
             # The first parameter is the port, the second parameter is the type of sensor.
             [temp,humidity] = grovepi.dht(sensor,blue)  
             if math.isnan(temp) == False and math.isnan(humidity) == False:
-                #print("temp = %.02f C humidity =%.02f%%"%(temp, humidity))
-                client.publish("anrg-pi14/temperature", str(round(temp, 2)))
-                client.publish("anrg-pi14/humidity", str(round(humidity, 2)))
+                T = str(round(temp, 2))
+                H = str(round(humidity, 2))
+                client.publish("anrg-pi14/temperature", T)
+                client.publish("anrg-pi14/humidity", H)
                 time.sleep(0.1)
 
         except IOError:
